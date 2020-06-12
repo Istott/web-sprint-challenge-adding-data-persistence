@@ -1,11 +1,11 @@
 const express = require('express');
 
-const SchemeRouter = require('./schemes/scheme-router.js');
+const ProjectsRouter = require('./projects/projects-router.js');
 
 const server = express();
 
 server.use(express.json());
-server.use('/api/schemes', SchemeRouter);
+server.use('/api/projects', ProjectsRouter);
 
 server.get("/", (req, res) => {
     res.status(200).json({ api: "up up and away" });

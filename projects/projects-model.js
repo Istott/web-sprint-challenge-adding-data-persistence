@@ -30,9 +30,9 @@ function addResource(resource) {
     return db("resources").insert(resource, "id")
 }
 
-function addTask(task, project_id) {
+function addTask(task, project_id, resource_id) {
     return db("tasks")
-        .insert(task)
+        .insert(task, resource_id)
         .where(project_id, id)
 }
 

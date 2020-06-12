@@ -10,7 +10,7 @@ exports.up = function(knex) {
 
       .createTable('resources', tbl => {
         tbl.increments();
-        tbl.string("name", 255).notNullable().index();
+        tbl.string("resource_name", 255).notNullable().index();
       })
 
       .createTable('tasks', tbl => {
@@ -19,9 +19,8 @@ exports.up = function(knex) {
         tbl.integer('task_number')
             .unsigned()
             .notNullable();
-        tbl.text('task')
+        tbl.text('task_name')
             .notNullable();
-
         tbl
             .integer("project_id")
             .unsigned()

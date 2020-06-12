@@ -4,19 +4,30 @@ module.exports = {
     add,
     addTask,
     update,
-    find,
+    findProjects,
     findById,
     findTasks,
     remove,
 
+    findResources,
+    addResource,
+
 }
 
-function find() {
+function findProjects() {
     return db("projects");
+}
+
+function findResources() {
+    return db("resources");
 }
 
 function add(project) {
     return db("projects").insert(project, "id")
+}
+
+function addResource(resource) {
+    return db("resources").insert(resource, "id")
 }
 
 function addTask(task, project_id) {
@@ -49,6 +60,7 @@ function remove(id) {
 function findTasks(id) {
     return db("tasks")
         .join("projects", "projects.id", "tasks.project_id")
-        .select("tasks.id", "projects.project_name", "tasks.task_number", "tasks.instructions")
+        .join("resources", "resources.id", "tasks.resource_id")
+        .select("tasks.id", "projects.project_name", "tasks.task_number", "tasks.task_name", "resources.resource_name")
         .where("project_id", id)
 }
